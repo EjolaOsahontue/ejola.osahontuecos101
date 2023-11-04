@@ -1,14 +1,21 @@
+use std::io;
+
 fn main() {
-    let distance1_miles = 80.0;
-    let time1_hours = 2.0;
-    let speed1_mph = distance1_miles / time1_hours;
-    let speed1_kmph = speed1_mph * 1.60934;
+    // Input distance in miles
+    let mut input_distance = String::new();
+    println!("Enter the distance in miles: ");
+    io::stdin().read_line(&mut input_distance).expect("Failed to read input");
+    let distance_miles: f32 = input_distance.trim().parse().expect("Invalid input for distance");
 
-    let distance2_miles = 120.0;
-    let time2_hours = 4.0;
-    let speed2_mph = distance2_miles / time2_hours;
-    let speed2_kmph = speed2_mph * 1.60934;
+    // Input time in hours
+    let mut input_time = String::new();
+    println!("Enter the time in hours: ");
+    io::stdin().read_line(&mut input_time).expect("Failed to read input");
+    let time_hours: f32 = input_time.trim().parse().expect("Invalid input for time");
 
-    println!("Scenario 1: Speed in km/h: {:.2}", speed1_kmph);
-    println!("Scenario 2: Speed in km/h: {:.2}", speed2_kmph);
+    // Calculate speed in kilometers per hour
+    let distance_kilometers = distance_miles * 1.60934; // Convert miles to kilometers
+    let speed_kph = distance_kilometers / time_hours;
+
+    println!("The car is traveling at {:.2} kilometers per hour.", speed_kph);
 }
